@@ -7,10 +7,7 @@ typedef int     (*CompareFunc)(void *info, void *list_data);
 #include "node.h"
 
 struct _List {
-    Node   *first;
-    Node   *last;
-    int     length;
-
+    Node *root;
     DeallocFunc dealloc;
     CompareFunc compare;
 };
@@ -19,7 +16,7 @@ typedef struct _List List;
 
 List    list_init(DeallocFunc dealloc, CompareFunc compare);
 void    list_destroy(List *list);
-void    list_append(List *list, void *data, size_t bytes);
+void    list_prepend(List *list, void *data, size_t bytes);
 
 /* Search in the list a node using the provided `info` by calling the
     compare function assigned to the list on its creation. If the node is

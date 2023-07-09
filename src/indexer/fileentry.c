@@ -29,7 +29,7 @@ FileEntry fentry_init(char *sentence, int line, char *filename)
     fentry.occurrences = list_init(dealloc_occurrence, compare_occurrence);
 
     Occurrence occur = occurrence_init(sentence, line);
-    list_append(&fentry.occurrences, &occur, sizeof(occur));
+    list_prepend(&fentry.occurrences, &occur, sizeof(occur));
 
     return fentry;
 }
@@ -50,7 +50,7 @@ void fentry_update(FileEntry *fentry, char *sentence, int line)
     Occurrence *occur = (Occurrence *)list_search(&fentry->occurrences, sentence);
     if (occur == NULL) {
         Occurrence new_occur = occurrence_init(sentence, line);
-        list_append(&fentry->occurrences, (void *)&new_occur, sizeof(new_occur));
+        list_prepend(&fentry->occurrences, (void *)&new_occur, sizeof(new_occur));
     }
 }
 

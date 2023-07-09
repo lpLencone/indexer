@@ -95,7 +95,7 @@ void indexer_print(Indexer *indexer, char *word, int n_occurrences_file)
         printf("Total frequency: %d\n", wentry->total);
 
         /* Loop through the file list in which the word appears */
-        Node *fentry_cursor = wentry->fentries.first;
+        Node *fentry_cursor = wentry->fentries.root;
         while (fentry_cursor != NULL) {
             FileEntry *fentry = fentry_cursor->data;
             
@@ -112,7 +112,7 @@ void indexer_print(Indexer *indexer, char *word, int n_occurrences_file)
             int occurrence_num = 1;
             /* Loop through the word's occurrences list in the file and print the
                 sentences in which it occurs */
-            Node *occurrence_cursor = fentry->occurrences.first;
+            Node *occurrence_cursor = fentry->occurrences.root;
             while (occurrence_cursor != NULL && occurrence_num <= n_occurrences_file) {
                 Occurrence *occurrence = occurrence_cursor->data;
                 printf(occurrence_format, occurrence_num++, occurrence->line, occurrence->sentence);
@@ -299,7 +299,7 @@ static void remove_redundant_spaces(char *s)
         /* This will be false when both *cursor and the character before it
             are whitespaces, or when *cursor is a leading whitespace */
         if (!isspace(*cursor) || !whitespace) {
-            *sptr++ = *cursor
+            *sptr++ = *cursor;
             whitespace = isspace(*cursor);
         }
     }

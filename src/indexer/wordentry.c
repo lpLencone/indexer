@@ -23,7 +23,7 @@ WordEntry wentry_init(char *word, char *sentence, int line, char *filename)
     wentry.fentries = list_init(dealloc_fentry, compare_fentry);
     FileEntry fentry = fentry_init(sentence, line, filename);
 
-    list_append(&wentry.fentries, &fentry, sizeof(fentry));
+    list_prepend(&wentry.fentries, &fentry, sizeof(fentry));
 
     return wentry;
 }

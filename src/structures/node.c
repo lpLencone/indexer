@@ -6,9 +6,8 @@
 Node *node_init(void *data, size_t bytes)
 {
     Node *node = malloc(sizeof(Node));
-    node->prev = NULL;
     node->next = NULL;
-
+    
     node->data = malloc(bytes);
     memcpy(node->data, data, bytes);
 

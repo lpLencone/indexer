@@ -5,9 +5,7 @@
 
 struct _Node {
     struct _Node *next;
-    struct _Node *prev;    
-
-    void *data;
+    void         *data;
 };
 
 typedef struct _Node Node;

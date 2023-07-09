@@ -8,13 +8,11 @@ typedef int	 (*CompareFunc)(void *info, void *tree_data);
 
 struct _AvlTree {
     AvlNode     *root;
-
     /* User-defined function used to free the memory of the allocated
         data inserted in the tree */
-    DeallocFunc dealloc;
-
+    DeallocFunc  dealloc;
     /* User-defined function used to compare data from two tree nodes */
-    CompareFunc compare;
+    CompareFunc  compare;
 };
 
 typedef struct _AvlTree AvlTree;
