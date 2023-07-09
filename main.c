@@ -26,7 +26,7 @@ int main(int argc, char **argv)
     char *wordbuf_pos;
     int n_occurrences_file;
     
-    char occurrences_buf[4];
+    char occurrences_buf[8];
     while (1) {
         wordbuf_pos = wordbuf;
 
@@ -53,7 +53,7 @@ int main(int argc, char **argv)
         }
 
         printf("Print how many occurrences from each file: ");
-        fgets(occurrences_buf, 4, stdin);
+        fgets(occurrences_buf, 8, stdin);
         n_occurrences_file = atoi(occurrences_buf);
 
         printf("\n");

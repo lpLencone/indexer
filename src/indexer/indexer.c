@@ -52,15 +52,7 @@ Indexer indexer_init(char **filenames, int n_files)
     Indexer indexer;
     indexer.n_files = n_files;
 
-    indexer.filenames = malloc(n_files * sizeof(char *));
-    for (int i = 0; i < n_files; i++) {
-        indexer.filenames[i] = malloc(SIZEOFSTRING(filenames[i]));
-        strcpy(indexer.filenames[i], filenames[i]);
-        printf("File added: %s\n", indexer.filenames[i]);
-    }
-
-    printf("All files were added.\n");
-    printf("===================================\n\n");
+    indexer.filenames = filenames;
 
     indexer.wentries = avltree_init(dealloc_wentry, compare_wentry);
     for (int i = 0; i < n_files; i++) {
@@ -71,16 +63,11 @@ Indexer indexer_init(char **filenames, int n_files)
     printf("All files were read.\n");
     printf("===================================\n\n");
 
-
     return indexer;
 }
 
 void indexer_destroy(Indexer *indexer)
 {
-    for (int i = 0; i < indexer->n_files; i++) {
-        free(indexer->filenames[i]);
-    }
-    free(indexer->filenames);
     avltree_destroy(&indexer->wentries);
 }
 
@@ -302,6 +289,7 @@ static void remove_redundant_spaces(char *s)
             *sptr++ = *cursor;
             whitespace = isspace(*cursor);
         }
+        cursor++;
     }
     *sptr = '\0';
 }
