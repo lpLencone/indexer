@@ -47,7 +47,7 @@ void wentry_update(WordEntry *wentry, char *sentence, int sentenceline, char *fi
     else {
         /* Create new file entry if there's no entry with the filename */
         FileEntry new_fentry = fentry_init(sentence, sentenceline, filename);
-        list_append(&wentry->fentries, &new_fentry, sizeof(new_fentry));
+        list_prepend(&wentry->fentries, &new_fentry, sizeof(new_fentry));
     }
 }
 
