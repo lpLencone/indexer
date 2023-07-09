@@ -39,7 +39,7 @@ int main(int argc, char **argv)
             
             if (++bufpos > INDEXER_WORD_BUFSIZE - 1) {
                 fprintf(stderr, "Error reading word: \"%s...\"\n", wordbuf);
-                fprintf(stderr, "Set INDEXER_WORD_BUFSIZE to a bigger value to be able to read bigger words\n");
+                fprintf(stderr, "Set INDEXER_WORD_BUFSIZE to a bigger value to be able to read longer words\n");
                 exit(1);
             }
 
