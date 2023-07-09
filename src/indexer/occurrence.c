@@ -9,7 +9,7 @@ Occurrence occurrence_init(char *sentence, int sentenceline)
 {
 	Occurrence occur;
 	occur.line = sentenceline;
-	occur.sentence = (char *)malloc(SIZEOFSTRING(sentence));
+	occur.sentence = malloc(SIZEOFSTRING(sentence));
 	strcpy(occur.sentence, sentence);
 	return occur;
 }

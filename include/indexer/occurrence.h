@@ -2,8 +2,8 @@
 #define __INDEXER_OCCURRENCE_H
 
 struct _Occurrence {
-	int line;
-	char *sentence;
+	int     line;
+	char   *sentence;
 };
 
 typedef struct _Occurrence Occurrence;

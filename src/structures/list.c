@@ -54,7 +54,6 @@ void *list_search(List *list, void *info)
 {
 	Node *cursor = list->first;
 	while (cursor != NULL) {
-		// Retornar data se ele estiver na list
 		if (list->compare(info, cursor->data) == 0) {
 			return cursor->data;
 		}

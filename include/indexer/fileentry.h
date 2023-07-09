@@ -5,7 +5,7 @@
 #include "occurrence.h"
 
 struct _FileEntry {
-	char	*filename;
+	char   *filename;
 	int		frequency;
 	int		n_lines;
 	List	occurrences;

@@ -7,12 +7,12 @@
 #include "node.h"
 
 struct _List {
-	Node	*first;
-	Node	*last;
-	int		length;
+	Node   *first;
+	Node   *last;
+	int     length;
 
-	void	func_dealloc;
-	int		func_compare;
+	void    func_dealloc;
+	int     func_compare;
 };
 
 typedef struct _List List;
@@ -25,7 +25,10 @@ void	list_append(List *list, void *data, size_t bytes);
 	chamando internamente a função de comparação atribuida durante a 
 	inicialização da lista. Se o nó for encontrado, seu dado será retornado; 
 	se não, retorna NULL. */
-void	*list_search(List *list, void *info);
+/* Search in the list a node using the provided `info` by calling the
+	compare function assigned to the list on its creation. If the node is
+	found, its data will be returned; else, NULL. */
+void  *list_search(List *list, void *info);
 
 #undef func_compare
 #undef func_dealloc

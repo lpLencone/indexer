@@ -6,7 +6,7 @@
 
 struct _Indexer {
     int     n_files;
-    char    **filenames;
+    char  **filenames;
 
     AvlTree wentries;
 };

@@ -12,15 +12,19 @@
 static void		avltree_destroy_recursive(AvlNode *avlnode, void func_dealloc);
 
 /* Se o nó não for nulo, retorna sua altura; se for nulo, retorna 0 */
+/* If node isn't NULL, return its height; else 0 */
 static int		height(AvlNode *node);
 
 /* Utiliza a função `height` para obter as alturas dos nós filhos e retorna
 	a diferença entre elas; se `node` for nulo, retorna 0 */
+/* Use the `height()` function to get each child node's height and return
+	the difference between these heights; if `node` is NULL, return 0 */
 static int		get_balance(AvlNode *node); /* Balanço */
 
 /* Função que retorna o maior valor entre dois números inteiros;
 	utilizada, neste programa, para determinar a altura de um nó a partir
 	da altura de seus filhos. */
+/* Yo classic max func */
 static int		max(int a, int b);
 
 static AvlNode	*rotate_left(AvlNode *node);

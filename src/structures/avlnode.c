@@ -5,7 +5,7 @@
 
 AvlNode *avlnode_init(void *data, size_t bytes)
 {
-	AvlNode *node = (AvlNode *)malloc(sizeof(AvlNode));
+	AvlNode *node = malloc(sizeof(AvlNode));
 
 	node->height = 1;
 	node->left   = NULL;

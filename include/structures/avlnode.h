@@ -8,13 +8,13 @@ struct _AvlNode {
 	struct _AvlNode	*right;
 	
 	int		height;
-	void	*data;
+	void   *data;
 };
 
 typedef struct _AvlNode AvlNode;
 
 AvlNode	*avlnode_init(void *data, size_t bytes);
-void	avlnode_destroy(AvlNode *avlnode);
+void	 avlnode_destroy(AvlNode *avlnode);
 
 
 
