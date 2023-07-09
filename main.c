@@ -1,8 +1,3 @@
-/* Integrantes do grupo: 
-	Lucas Plaza
-	Jefferson Dutra
-	Felipe Coutinho	*/
-
 #include "indexer/indexer.h"
 
 #include <ctype.h>
@@ -11,55 +6,64 @@
 #include <stdlib.h>
 #include <time.h>
 
-#ifndef _INDEXER_WORD_BUFSIZE
-# define _INDEXER_WORD_BUFSIZE 32
+#ifndef INDEXER_WORD_BUFSIZE
+# define INDEXER_WORD_BUFSIZE 32
 #endif
 
 int main(int argc, char **argv)
 {
-	if (argc < 2) {
-		fprintf(stderr, "Erro de uso: %s arquivo_1 [, arquivo_2 [, ...]]\n", argv[0]);
-		exit(EXIT_FAILURE);
-	}
+    if (argc < 2) {
+        fprintf(stderr, "Usage error: %s file_1 [file_2 [...]]\n", argv[0]);
+        exit(EXIT_FAILURE);
+    }
 
-	/* argv + 1: posição no vetor argv em que os arquivos são recebidos */
-	/* argc - 1: quantidade de arquivos passados para o programa */
-	Indexer indexer = indexer_init(argv + 1, argc - 1);
-	
-	char c;
-	char wordbuf[_INDEXER_WORD_BUFSIZE];
-	char *wordbuf_ptr;
-	int n_occurrences_file;
-	
-	char occurrences_buf[4];
-	while (1) {
-		wordbuf_ptr = wordbuf;
+    /* argv + 1: argv position the files start lining up */
+    /* argv - 1: number of files received */
+    Indexer indexer = indexer_init(argv + 1, argc - 1);
+    
+    char c;
+    char wordbuf[INDEXER_WORD_BUFSIZE];
+    char *wordbuf_pos;
+    int n_occurrences_file;
+    
+    char occurrences_buf[4];
+    while (1) {
+        wordbuf_pos = wordbuf;
 
-		printf("Entre com uma palavra ou insira \"--sair\" para encerrar o programa.\n");
-		printf("Palavra: ");
+        printf("Enter a word or \"--exit\" to exit the program.\n");
+        printf("Word: ");
 
-		while ((c = getchar()) != '\n') {
-			c = tolower(c);
-        	*wordbuf_ptr++ = c;
-		}
-		*wordbuf_ptr = '\0';
+        int bufpos = 0;
 
-		if (strcmp(wordbuf, "--sair") == 0) {
-			break;
-		}
+        while ((c = getchar()) != '\n') {
+            
+            if (++bufpos > INDEXER_WORD_BUFSIZE - 1) {
+                fprintf(stderr, "Error reading word: \"%s...\"\n", wordbuf);
+                fprintf(stderr, "Set INDEXER_WORD_BUFSIZE to a bigger value to be able to read bigger words\n");
+                exit(1);
+            }
 
-		printf("Quantas ocorrencias por arquivo: ");
-		fgets(occurrences_buf, sizeof(char) * 4, stdin);
-		n_occurrences_file = atoi(occurrences_buf);
+            c = tolower(c);
+            *wordbuf_pos++ = c;
+        }
+        *wordbuf_pos = '\0';
 
-		printf("\n");
+        if (strcmp(wordbuf, "--exit") == 0) {
+            break;
+        }
 
-		indexer_print(&indexer, wordbuf, n_occurrences_file);
-	}
-	
+        printf("Print how many occurrences from each file: ");
+        fgets(occurrences_buf, 4, stdin);
+        n_occurrences_file = atoi(occurrences_buf);
 
-	indexer_destroy(&indexer);
+        printf("\n");
 
-	return 0;
+        indexer_print(&indexer, wordbuf, n_occurrences_file);
+    }
+    
+
+    indexer_destroy(&indexer);
+
+    return 0;
 }
 

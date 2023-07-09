@@ -1,5 +1,5 @@
-#ifndef __INDEXER_H
-#define __INDEXER_H	
+#ifndef INDEXER_H_
+#define INDEXER_H_    
 
 #include "wordentry.h"
 #include "structures/avltree.h"
@@ -13,10 +13,10 @@ struct _Indexer {
 
 typedef struct _Indexer Indexer;
 
-Indexer	indexer_init(char **filenames, int n_files);
+Indexer indexer_init(char **filenames, int n_files);
 void    indexer_destroy(Indexer *indexer);
 
-void indexer_print(Indexer *indexer, char *words, int n_occurrences_file);
+void    indexer_print(Indexer *indexer, char *words, int n_occurrences_file);
 
-#endif /* __INDEXER_H */
+#endif /* INDEXER_H_ */
 

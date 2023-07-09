@@ -1,0 +1,4 @@
+Replaced underscore-leading macros to underline-trailing macros
+Replaced function macros for function typedefs
+Removed tail pointer from list and double linkage from the nodes
+Main will no more overflow wordbuf
