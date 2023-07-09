@@ -66,7 +66,7 @@ Indexer indexer_init(char **filenames, int n_files)
     Indexer indexer;
     indexer.n_files = n_files;
 
-    indexer.filenames = malloc(n_files * sizeof);
+    indexer.filenames = malloc(n_files * sizeof(char *));
     for (int i = 0; i < n_files; i++) {
         indexer.filenames[i] = malloc(SIZEOFSTRING(filenames[i]));
         strcpy(indexer.filenames[i], filenames[i]);

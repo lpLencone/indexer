@@ -4,7 +4,7 @@
 #include "avlnode.h"
 
 #define func_dealloc (*dealloc)(void *data)
-#define func_compare ( compare)(void *info, void *tree_data)
+#define func_compare (*compare)(void *info, void *tree_data)
 
 struct _AvlTree {
 	AvlNode	*root;
